@@ -59,7 +59,7 @@ nav.main a{text-decoration:none;position:relative;padding-bottom:4px}
 nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--cobre);transform:scaleX(0);transition:transform .4s}
 nav.main a:hover::after{transform:scaleX(1)}
 header.small nav.main{display:none}
-@media (max-width:760px){.util.l{display:none}.hbar{grid-template-columns:auto 1fr}.logo{text-align:left;font-size:28px}.util.r{gap:14px}nav.main{gap:18px;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}}
+@media (max-width:760px){.util.l{display:none}.hbar{grid-template-columns:auto 1fr}.logo{text-align:left;font-size:28px}.util.r{gap:14px}nav.main{display:block}}
 
 /* hero cinema */
 .hero{position:relative;background:var(--cafe);color:var(--creme);overflow:hidden}
@@ -297,6 +297,21 @@ footer .inner{padding-block:80px 36px;display:flex;flex-direction:column;gap:56p
  .fcols{grid-template-columns:1fr}.news input{width:100%}.news form{width:100%}.news label{width:100%}
  .gift-tile{aspect-ratio:4/5}.gift-tile img{width:80%}
 }
+.quick,.all{display:contents}
+.burger{display:none}
+@media (max-width:760px){
+ nav.main .quick{display:flex;align-items:center;gap:22px}
+ nav.main .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;margin-left:auto;width:44px;height:44px;background:none;border:0;cursor:pointer;padding:0 0 0 12px}
+ .burger span{display:block;width:24px;height:1px;background:var(--cafe);transition:transform .35s,opacity .35s}
+ nav.main.open .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+ nav.main.open .burger span:nth-child(2){opacity:0}
+ nav.main.open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+ nav.main .all{display:none}
+ nav.main.open .all{display:flex;flex-direction:column;border-top:1px solid var(--borda);margin-top:10px;animation:rise .4s both}
+ nav.main .all a{padding:16px 0;border-bottom:1px solid var(--borda)}
+ nav.main .all a::after{display:none}
+ header.small nav.main{display:block}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.ticker .track{animation:none}}
 </style>
 
@@ -311,8 +326,10 @@ footer .inner{padding-block:80px 36px;display:flex;flex-direction:column;gap:56p
       <a href="#" class="logo">RADHA<small>JOIAS</small></a>
       <div class="util r"><a href="#catalogo">Buscar</a><a href="#">Entrar</a><a href="#" class="bag">Sacola <b id="bagN">0</b></a></div>
     </div>
-    <nav class="main" aria-label="Categorias">
-      <a href="#catalogo">Novidades</a><a href="#catalogo">Anéis</a><a href="#catalogo">Colares</a><a href="#catalogo">Brincos</a><a href="#catalogo">Pulseiras</a><a href="#moissanite">Moissanite</a><a href="#revenda">Revenda</a>
+    <nav class="main" id="nav" aria-label="Categorias">
+      <div class="quick"><a href="#catalogo" class="keep">Novidades</a><a href="#moissanite" class="keep">Moissanite</a>
+      <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="navAll" aria-label="Todas as categorias"><span></span><span></span><span></span></button></div>
+      <div class="all" id="navAll"><a href="#catalogo">Anéis</a><a href="#catalogo">Colares</a><a href="#catalogo">Brincos</a><a href="#catalogo">Pulseiras</a><a href="#app">App Radha</a><a href="#revenda">Revenda</a></div>
     </nav>
   </div>
 </header>
@@ -595,6 +612,11 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ticker */
 const tk=['Frete grátis acima de [valor]','Moissanite · Prata 925 · Semijoias','Coleção Lótus 2026','Parcele em até [X]x','Seja uma revendedora Radha'];
 $('#tick').innerHTML=[...tk,...tk].map(t=>`<span>${t}</span><span>·</span>`).join('');
+
+/* mobile menu */
+const nav=$('#nav'),bur=$('#burger');
+bur.onclick=()=>{const o=nav.classList.toggle('open');bur.setAttribute('aria-expanded',o);};
+nav.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');bur.setAttribute('aria-expanded','false');}});
 
 /* header shrink */
 const hdr=$('#hdr'); addEventListener('scroll',()=>hdr.classList.toggle('small',scrollY>140),{passive:true});
