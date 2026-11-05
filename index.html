@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2A1C15">
 <title>Radha Joias</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap">
@@ -11,7 +17,10 @@
   color-scheme: light;
 }
 *{box-sizing:border-box}
-body{background:var(--branco);color:var(--cafe);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+html,body{overflow-x:hidden}
+img{max-width:100%}
+body{margin:0;background:var(--branco);color:var(--cafe);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0;text-wrap:balance;line-height:1.05}
 .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -275,9 +284,24 @@ footer .inner{padding-block:80px 36px;display:flex;flex-direction:column;gap:56p
 .first p{margin:0;opacity:.85}
 .colls{padding-block:0 110px;background:var(--branco)}
 
+/* phone polish */
+@media (max-width:560px){
+ .hero h1{font-size:54px}.hero-copy{gap:20px;padding-block:44px}.hero .ctas .btn{flex:1 1 100%}
+ .reel{min-height:340px}.reel .cap{left:16px;bottom:16px}.reel .cap b{font-size:19px}.dots{right:12px;bottom:18px;gap:4px}.dots button{width:22px}
+ .manifesto,.best,.wall,.colls,.house,.gift{padding-block:72px}.cats{padding-block:0 72px}
+ .feature .copy{padding-block:56px}.feature .media{min-height:320px}
+ .best-head h2,.wall-head h2{font-size:38px}
+ .resell .inner{padding-block:72px;gap:44px}.phone{width:260px}
+ .util.r a:not(.bag){display:none}
+ .wall-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}.card .nm{font-size:17px}
+ .fcols{grid-template-columns:1fr}.news input{width:100%}.news form{width:100%}.news label{width:100%}
+ .gift-tile{aspect-ratio:4/5}.gift-tile img{width:80%}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.ticker .track{animation:none}}
 </style>
 
+</head>
+<body>
 <div class="ticker" aria-hidden="true"><div class="track" id="tick"></div></div>
 
 <header id="hdr" class="wrap">
@@ -630,3 +654,6 @@ document.querySelectorAll('.film .play').forEach(b=>b.addEventListener('click',(
 /* newsletter */
 $('#newsForm').addEventListener('submit',e=>{e.preventDefault();$('#newsForm').hidden=true;$('#newsOk').hidden=false;});
 </script>
+
+</body>
+</html>
