@@ -59,7 +59,7 @@ nav.main a{text-decoration:none;position:relative;padding-bottom:4px}
 nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--cobre);transform:scaleX(0);transition:transform .4s}
 nav.main a:hover::after{transform:scaleX(1)}
 header.small nav.main{display:none}
-@media (max-width:760px){.util.l{display:none}.hbar{grid-template-columns:auto 1fr}.logo{text-align:left;font-size:28px}.util.r{gap:14px}nav.main{display:block}}
+@media (max-width:760px){nav.main{padding-bottom:4px}.util.l{display:none}.hbar{grid-template-columns:auto 1fr}.logo{text-align:left;font-size:28px}.util.r{gap:14px}nav.main{display:block}}
 
 /* hero cinema */
 .hero{position:relative;background:var(--cafe);color:var(--creme);overflow:hidden}
@@ -300,15 +300,16 @@ footer .inner{padding-block:80px 36px;display:flex;flex-direction:column;gap:56p
 .quick,.all{display:contents}
 .burger{display:none}
 @media (max-width:760px){
- nav.main .quick{display:flex;align-items:center;gap:22px}
- nav.main .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;margin-left:auto;width:44px;height:44px;background:none;border:0;cursor:pointer;padding:0 0 0 12px}
+ nav.main .quick{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;letter-spacing:.13em}
+ nav.main .quick .keep{white-space:nowrap;padding-block:12px}
+ nav.main .burger{display:flex;flex-direction:column;justify-content:center;gap:5px;flex:0 0 40px;width:40px;height:44px;background:none;border:0;cursor:pointer;padding:0;align-items:flex-end}
  .burger span{display:block;width:24px;height:1px;background:var(--cafe);transition:transform .35s,opacity .35s}
  nav.main.open .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
  nav.main.open .burger span:nth-child(2){opacity:0}
  nav.main.open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
  nav.main .all{display:none}
  nav.main.open .all{display:flex;flex-direction:column;border-top:1px solid var(--borda);margin-top:10px;animation:rise .4s both}
- nav.main .all a{padding:16px 0;border-bottom:1px solid var(--borda)}
+ nav.main .all a{padding:16px 0;font-size:11px;letter-spacing:.24em;border-bottom:1px solid var(--borda)}
  nav.main .all a::after{display:none}
  header.small nav.main{display:block}
 }
@@ -327,9 +328,9 @@ footer .inner{padding-block:80px 36px;display:flex;flex-direction:column;gap:56p
       <div class="util r"><a href="#catalogo">Buscar</a><a href="#">Entrar</a><a href="#" class="bag">Sacola <b id="bagN">0</b></a></div>
     </div>
     <nav class="main" id="nav" aria-label="Categorias">
-      <div class="quick"><a href="#catalogo" class="keep">Novidades</a><a href="#moissanite" class="keep">Moissanite</a>
+      <div class="quick"><a href="#catalogo" class="keep">Novidades</a><a href="#catalogo" class="keep">Anéis</a><a href="#catalogo" class="keep">Colares</a><a href="#moissanite" class="keep">Moissanite</a>
       <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="navAll" aria-label="Todas as categorias"><span></span><span></span><span></span></button></div>
-      <div class="all" id="navAll"><a href="#catalogo">Anéis</a><a href="#catalogo">Colares</a><a href="#catalogo">Brincos</a><a href="#catalogo">Pulseiras</a><a href="#app">App Radha</a><a href="#revenda">Revenda</a></div>
+      <div class="all" id="navAll"><a href="#catalogo">Brincos</a><a href="#catalogo">Pulseiras</a><a href="#app">App Radha</a><a href="#revenda">Revenda</a></div>
     </nav>
   </div>
 </header>
